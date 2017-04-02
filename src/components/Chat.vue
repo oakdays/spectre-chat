@@ -9,7 +9,8 @@
           </div>
           <div class="panel-body">
             <div v-for="message in messages">
-              <b>{{ message.user }}</b>: {{ message.text }}
+              <span v-if="message.hasOwnProperty('time')">[{{ getDate(message.time) }}]</span>
+              <b> {{ message.user }}</b>: {{ message.text }}
             </div>            
           </div>
           <div class="panel-footer">
@@ -65,6 +66,14 @@
       debug (event) {
         console.log(event)
       },
+      getDate (timestamp) {
+        if (timestamp === undefined) return ''
+        var date = new Date(timestamp)
+
+        return (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/' +
+          (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '/' +
+          date.getFullYear().toString().substring(2, 4) + ' ' + date.getHours() + ':' + date.getMinutes()
+      },
       setName () {
         if (/\S/.test(this.userName)) {
           if (this.hasNameError) this.hasNameError = false
@@ -82,14 +91,20 @@
           this.sendingMessage = true
           this.ref.push({
             user: this.userName,
-            text: this.messageToSend
+            text: this.messageToSend,
+            time: new Date().getTime()
           }).then(function () {
             vm.sendingMessage = false
             vm.messageToSend = ''
+            vm.scrollToEnd()
           })
         } else {
           this.hasError = true
         }
+      },
+      scrollToEnd () {
+        var container = this.$el.querySelector('.panel-body')
+        container.scrollTop = container.scrollHeight
       }
     }
   }
