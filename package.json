@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "firebase": "^3.7.4",
-    "spectre.css": "^0.2.11",
+    "spectre.css": "^0.2.13",
     "vue": "^2.2.2",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1",

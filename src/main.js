@@ -13,9 +13,9 @@ import VuexFire from 'vuexfire'
 
 Vue.use(VuexFire)
 
-import 'spectre.css/dist/spectre.css'
-import 'spectre.css/dist/spectre-exp.css'
-import 'spectre.css/dist/spectre-icons.css'
+import 'spectre.css/docs/dist/spectre.css'
+import 'spectre.css/docs/dist/spectre-exp.css'
+import 'spectre.css/docs/dist/spectre-icons.css'
 
 /* eslint-disable no-new */
 new Vue({
